@@ -63,7 +63,7 @@
 <p>密钥长度： 128bit</p>
 <p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607221514892.png" alt="image-20230607221514892"></p>
 <h4 id="PKCS5Padding"><a href="#PKCS5Padding" class="headerlink" title="PKCS5Padding"></a>PKCS5Padding</h4><p>将数据填充到8的倍数，填充数据计算公式是，假如原数据长度为len，利用该方法填充后的长度是 len + (8 - (len % 8)), 填充的数据长度为 8 - (len % 8)，块大小固定为8字节，如果刚好长度满足8字节，则新增一个全为0x08的块。所有填充的值为需要填充的字节数，这种填充方式只有在填充字符为0x01-0x08之间才是合法的。</p>
-<h4 id="攻击思路"><a href="#攻击思路" class="headerlink" title="攻击思路"></a>攻击思路</h4><p><img src="https://bkimg.cdn.bcebos.com/pic/6609c93d70cf3bc7af6b7780d000baa1cd112a76?x-bce-process=image/resize,m_lfit,w_440,limit_1" alt="CBC 工作模式"></p>
+<h4 id="攻击思路"><a href="#攻击思路" class="headerlink" title="攻击思路"></a>攻击思路</h4><p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607233135913.png" alt="image-20230607233135913"></p>
 <p>根据CBC加密模式，解密时初始IV将与经过key解密的密文块异或得到明文块（后面我们称经过key解密的密文块为中间块），如果我们能够不获取key而直接获得中间块，那么我们就可以破解出明文。</p>
 <p>由于PKCS5Padding的特性，每个填充块有这么几种可能：</p>
 <ol>
