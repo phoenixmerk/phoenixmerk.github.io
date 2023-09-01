@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Sally"><title>shiro组件相关漏洞 · Sally's Blog</title><meta name="description" content="shiro漏洞原理介绍参考链接
+https://www.freebuf.com/articles/web/364631.html
+https://xz.aliyun.com/t/8997
+shiro-550Apache Shiro框架提供了记住密码的功能，用户登录成功后会生成经过加密并编码的cook"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a href="/">Home</a></li><li> <a href="/archives">Archives</a></li><li> <a href="/tags">Tags</a></li><li> <a href="/about">About</a></li><li> <a href="/links">Links</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/kabi.jpg"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/kabi.jpg" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Sally's Blog</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/phoenixmerk"><i class="fa fa-github"></i></a></li><li><a href="mailto:yaojunyimerk11@163.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com"><i class="fa fa-mortar-board"></i></a></li></ul></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Sally</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>shiro组件相关漏洞</a></h3></div><div class="post-content"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg"></a></p>
+<h2 id="shiro漏洞原理介绍"><a href="#shiro漏洞原理介绍" class="headerlink" title="shiro漏洞原理介绍"></a>shiro漏洞原理介绍</h2><p>参考链接</p>
+<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/364631.html">https://www.freebuf.com/articles/web/364631.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/8997">https://xz.aliyun.com/t/8997</a></p>
+<h2 id="shiro-550"><a href="#shiro-550" class="headerlink" title="shiro-550"></a>shiro-550</h2><p>Apache Shiro框架提供了记住密码的功能，用户登录成功后会生成经过加密并编码的cookie，在服务端对rememberMe的Cookie值，先base64解码再AES解密再反序列化，就导致了反序列化RCE漏洞。</p>
+<h2 id="调用逻辑"><a href="#调用逻辑" class="headerlink" title="调用逻辑"></a>调用逻辑</h2><p>示例代码来源于<a target="_blank" rel="noopener" href="https://github.com/vulhub/vulhub/tree/master/base">vulhub镜像源码</a></p>
+<h3 id="加密部分"><a href="#加密部分" class="headerlink" title="加密部分"></a>加密部分</h3><ol>
+<li>首先运行代码，在Bean中查看<code>shiroConfig</code>中的调用逻辑，我们知道shiro的漏洞就存在于<code>RememberMe</code>功能中，我们跟进<code>cookieRememberMeManager</code>方法。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607160535229.png" alt="image-20230607160535229"></p>
+<ol start="2">
+<li>可以看到这个方法返回的是一个<code>CookieRemberMeManager</code>对象，我们跟进<code>CookieRememberMeManager</code>类。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607161415291.png" alt="image-20230607161415291"></p>
+<ol start="3">
+<li>可以看到<code>CookieRememberMeManager</code>方法在Http请求体中设置了字段名为rememberMe的Cookie，<code>CookieRememberMeManager</code>方法所在的<code>CookieRememberMe</code>类继承了<code>AbstractRememberMeManager</code>类，我们跟进<code>AbstractRememberMeManager</code>类。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607161639678.png" alt="image-20230607161639678"></p>
+<ol start="4">
+<li>可以看到一个私有的默认base64编码加密密钥<code>kPH+bIxk5D2deZiIxcaaaA==</code>，那么这个密钥用来做什么呢，根据另一个私有成员cipherService猜测是AES加密密钥，接着向下看发现这个加密密钥被默认设置了，也就意味着每一次加密使用的都是同一个密钥，这会导致严重的安全问题。我们向下看明文和密文的来源和去向。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607162625262.png" alt="image-20230607162625262"></p>
+<ol start="5">
+<li>可以看到encrypt方法中对一个序列化字节数组进行了加密，但这里我们无法找到这个序列化字节数组的详情，于是在这里下了一个方法断点，通过调试来回溯。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607165348048.png" alt="image-20230607165348048"></p>
+<ol start="6">
+<li>返回上一帧，发现调用位置是在<code>convertPrincipalsToBytes</code>方法，我们看到principals其实是我们的用户名”admin”, 这里将用户名转换成了字节数组然后进行了加密，再继续返回上一帧看看。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607182503867.png" alt="image-20230607182503867"></p>
+<ol start="7">
+<li>可以看到<code>rememberIdentity</code>对前端获取的token进行了处理，以principal对象形式传递给后续的加密步骤。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607183615439.png"></p>
+<h3 id="解密部分"><a href="#解密部分" class="headerlink" title="解密部分"></a>解密部分</h3><ol>
+<li>类似加密部分的第5步，我们在<code>AbstractRememberMeManager</code>类声明中可以找到decrypt方法，它对加密数据进行了解密，返回 了一个序列化字节数组，这个字节数组内容大概率是一个principal对象（根据前面的调试猜测），在此设置方法断点进行调试。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607184706824.png" alt="image-20230607184706824"></p>
+<ol start="2">
+<li>单步步过直到<code>convertBytesToPrincipals</code>方法，发现了反序列化的位置就在<code>convertBytesToPrincipals</code>方法中，将解密的字节数组进行反序列化。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607185040888.png" alt="image-20230607185040888"></p>
+<ol start="3">
+<li>单步步入<code>deserialize</code>方法中，发现这里创建了一个字节数组输入流对象用来存储序列化的字节数组，再通过<code>readObject</code>方法进行反序列化，这也是反序列化漏洞触发的接口位置。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607200615343.png" alt="image-20230607200615343"></p>
+<h3 id="修复手段"><a href="#修复手段" class="headerlink" title="修复手段"></a>修复手段</h3><ol>
+<li>更新shiro组件版本</li>
+<li>不使用默认的加密密钥，一次一密最稳妥</li>
+</ol>
+<h2 id="shiro-721"><a href="#shiro-721" class="headerlink" title="shiro-721"></a>shiro-721</h2><p>Apache Shiro cookie中通过AES-128-CB模式加密的rememberMe字段存在问题，用户通过Padding Oracle加密生成的攻击代码来构造恶意的rememberMe字段，并重新请求网站，进行反序列化攻击，最终导致任意代码执行。</p>
+<p>shiro-721 的调用逻辑和shiro-550的方式非常类似，差别最大的就是<code>AbstractRememberMeManager</code>类中，AES密钥不再使用硬编码模式了，而是通过<code>KeyGenerator</code>进行了密钥生成，这也意味着我们难以获取密钥，无法直接破解这个AES加密系统，但是攻击者提出了另一种思路，即<strong>Padding Oracle Attack（填充提示攻击）</strong>，可以实现无需加密密钥直接构造密文。</p>
+<h3 id="Padding-Oracle-Attack"><a href="#Padding-Oracle-Attack" class="headerlink" title="Padding Oracle Attack"></a>Padding Oracle Attack</h3><p>参考链接：</p>
+<p><a target="_blank" rel="noopener" href="https://ctf-wiki.org/crypto/blockcipher/mode/padding-oracle-attack/">https://ctf-wiki.org/crypto/blockcipher/mode/padding-oracle-attack/</a></p>
+<p>利用该漏洞可以破解出密文的明文以及将明文加密成密文，该漏洞存在条件如下：</p>
+<ol>
+<li>攻击者能够获取到密文（基于分组密码模式），以及IV向量（通常附带在密文前面，初始化向量）</li>
+<li>攻击者能够修改密文触发解密过程，解密成功和解密失败存在差异性</li>
+</ol>
+<p>加密算法：AES</p>
+<p>工作模式：CBC</p>
+<p>填充方式： PKCS5Padding</p>
+<p>密钥长度： 128bit</p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607221514892.png" alt="image-20230607221514892"></p>
+<h4 id="PKCS5Padding"><a href="#PKCS5Padding" class="headerlink" title="PKCS5Padding"></a>PKCS5Padding</h4><p>将数据填充到8的倍数，填充数据计算公式是，假如原数据长度为len，利用该方法填充后的长度是 len + (8 - (len % 8)), 填充的数据长度为 8 - (len % 8)，块大小固定为8字节，如果刚好长度满足8字节，则新增一个全为0x08的块。所有填充的值为需要填充的字节数，这种填充方式只有在填充字符为0x01-0x08之间才是合法的。</p>
+<h4 id="攻击思路"><a href="#攻击思路" class="headerlink" title="攻击思路"></a>攻击思路</h4><p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230607233135913.png" alt="image-20230607233135913"></p>
+<p>根据CBC加密模式，解密时初始IV将与经过key解密的密文块异或得到明文块（后面我们称经过key解密的密文块为中间块），如果我们能够不获取key而直接获得中间块，那么我们就可以破解出明文。</p>
+<p>由于PKCS5Padding的特性，每个填充块有这么几种可能：</p>
+<ol>
+<li>XXXXXXX 0x01</li>
+<li>XXXXXX 0x02 0x02</li>
+<li>XXXXX 0x03 0x03 0x03</li>
+<li>XXXX 0x04 0x04 0x04 0x04</li>
+<li>XXX 0x05 0x05 0x05 0x05 0x05</li>
+<li>XX 0x06 0x06 0x06 0x06 0x06 0x06</li>
+<li>X 0x07 0x07 0x07 0x07 0x07 0x07 0x07</li>
+<li>0x08 0x08 0x08 0x08 0x08 0x08 0x08 0x08</li>
+</ol>
+<p>当我们提交一个IV时，服务器会用中间值与它异或得值然后先校验填充情况而非直接比对明文。</p>
+<p>此时服务器会返回两种情况：正确的密文返回200或者302；错误的密文返回500。</p>
+<ol>
+<li>假定明文最后一位填充为0x01，那么我们可以暴力枚举IV最后一个字节，若服务器响应200，则对应的中间块字节为该IV一个字节异或0x01。</li>
+<li>假定明文最后两位填充为0x02，那么我们的IV最后一个字节固定为上次计算出的中间块字节异或0x02，暴力枚举IV倒数第二个字节，若服务器响应200，则对应的中间块字节为该IV倒数第二个字节异或0x02。</li>
+</ol>
+<p>按照上述的攻击方式可以逐步推导出整个中间块，从而计算出第一个明文块，用同样的方式可以直接计算出所有明文。</p>
+<h3 id="修复手段-1"><a href="#修复手段-1" class="headerlink" title="修复手段"></a>修复手段</h3><ul>
+<li>更新shiro组件版本</li>
+<li>由于Padding Oracle Attack需要通过服务器响应进行判断，我们可以对服务器流量进行限制，将短时间多次访问的IP进行限制</li>
+</ul>
+<h2 id="shiro识别与漏洞发现"><a href="#shiro识别与漏洞发现" class="headerlink" title="shiro识别与漏洞发现"></a>shiro识别与漏洞发现</h2><h3 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h3><p>使用docker一键部署</p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230525203247649.png" alt="image-20230525203247649"></p>
+<h3 id="shiro漏洞发现"><a href="#shiro漏洞发现" class="headerlink" title="shiro漏洞发现"></a>shiro漏洞发现</h3><p>记住密码功能</p>
+<p>返回包set cookie位置显示字段rememberMe&#x3D;XXX</p>
+<p>如果返回包没有，在请求包的cookie中加上rememberMe字段，如果返回包里返回了，则使用了shiro</p>
+<h3 id="shiro漏洞检测"><a href="#shiro漏洞检测" class="headerlink" title="shiro漏洞检测"></a>shiro漏洞检测</h3><p>使用shiroscan工具进行检测</p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230525215041885.png" alt="image-20230525215041885"></p>
+<p>在DNSLog上查看回显，可是太卡了没办法看到。</p>
+<h3 id="获取shell"><a href="#获取shell" class="headerlink" title="获取shell"></a>获取shell</h3><p>使用python脚本进行将获取的shell反弹到vps上</p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230526152826228.png" alt="image-20230526152826228"></p>
+<p>查看vps的情况，发现反弹了shell</p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230526153031190.png" alt="image-20230526153031190"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不管是shiro-550还是shiro-721，导致反序列化接口暴露的原因都是不安全的加密方式，一个是直接使用了硬编码模式，将默认密钥写入了源码中，一个能够根据工作模式和填充方式组合的缺陷绕过获取密钥直接暴力破解出明文。</p>
+</p><div class="tip">本文采用CC-BY-SA-3.0协议，转载请注明出处<br>Author: Sally</div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-06-07</span><i class="fa fa-tag"></i><a class="tag" href="/tags/常见web漏洞/" title="常见web漏洞">常见web漏洞 </a><span class="leancloud_visitors"></span><span>About 1968 words, 6 min 33 sec  read</span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://phoenixmerk.github.io/2023/06/07/shiro组件相关漏洞/,Sally's Blog,shiro组件相关漏洞,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/06/12/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%B7%A9%E5%9B%BA/" title="文件上传巩固">Previous</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/06/06/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/" title="权限提升">Next</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><script src="/js/baidu-tongji.js"></script></body></html>

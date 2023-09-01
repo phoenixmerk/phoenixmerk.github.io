@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Sally"><title>权限提升 · Sally's Blog</title><meta name="description" content="提权概述提权，网络术语，提高自己在服务器中的权限，主要针对网站入侵过程中，当入侵某一网站时，通过各种漏洞提升WEBSHELL权限以夺得该服务器权限。
+Windows：user –&amp;gt; administrator
+Linux：user –&amp;gt; root
+提权条件
+拥有webshell、普通用户"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a href="/">Home</a></li><li> <a href="/archives">Archives</a></li><li> <a href="/tags">Tags</a></li><li> <a href="/about">About</a></li><li> <a href="/links">Links</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/kabi.jpg"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/kabi.jpg" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Sally's Blog</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/phoenixmerk"><i class="fa fa-github"></i></a></li><li><a href="mailto:yaojunyimerk11@163.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com"><i class="fa fa-mortar-board"></i></a></li></ul></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Sally</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>权限提升</a></h3></div><div class="post-content"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg"></a></p>
+<h2 id="提权概述"><a href="#提权概述" class="headerlink" title="提权概述"></a>提权概述</h2><p>提权，网络术语，提高自己在服务器中的权限，主要针对网站入侵过程中，当入侵某一网站时，通过各种漏洞提升WEBSHELL权限以夺得该服务器权限。</p>
+<p>Windows：user –&gt; administrator</p>
+<p>Linux：user –&gt; root</p>
+<h2 id="提权条件"><a href="#提权条件" class="headerlink" title="提权条件"></a>提权条件</h2><ul>
+<li>拥有webshell、普通用户权限</li>
+<li>拥有某些软件的账号密码 </li>
+<li>本地或远程服务器上存在漏洞</li>
+<li>拥有漏洞利用工具代码</li>
+</ul>
+<h2 id="操作系统内核漏洞提权"><a href="#操作系统内核漏洞提权" class="headerlink" title="操作系统内核漏洞提权"></a>操作系统内核漏洞提权</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>利用window系统中没有打补丁的内核溢出漏洞进行攻击。</p>
+<p>1.查看当前用户权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">whoami</span> /groups</span><br></pre></td></tr></table></figure>
+
+<p>2.查看系统安全补丁</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systeminfo</span><br><span class="line">wmic qfe get Caption,Description,HotFixiD,InstalledOn</span><br></pre></td></tr></table></figure>
+
+<p>3.与可以进行提权的内核溢出漏洞exp进行对比</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/SecWiki/windows-kernel-exploits">https://github.com/SecWiki/windows-kernel-exploits</a></p>
+<p>4.执行EXP</p>
+<h3 id="实战演练"><a href="#实战演练" class="headerlink" title="实战演练"></a>实战演练</h3><ol>
+<li>利用其它漏洞获取一个shell，查看权限为普通用户</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; getuid</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606000405740.png" alt="image-20230606000405740"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; shell</span><br><span class="line"><span class="built_in">whoami</span>  /groups</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606093932292.png" alt="image-20230606093932292"></p>
+<ol start="2">
+<li>使用post&#x2F;multi&#x2F;recon&#x2F;local_exploit_suggester进行提权漏洞检测</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230605212101590.png" alt="image-20230605212101590"></p>
+<ol start="3">
+<li>我们可以选择一个漏洞进行利用例如MS_2018_8120进行利用</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230605235454327.png" alt="image-20230605235454327"></p>
+<ol start="4">
+<li>配置好参数后run，查看系统当前权限为SYSTEM权限</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606000113453.png" alt="image-20230606000113453"></p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606100012402.png" alt="image-20230606100012402"></p>
+<h2 id="Windows操作系统配置错误提权"><a href="#Windows操作系统配置错误提权" class="headerlink" title="Windows操作系统配置错误提权"></a>Windows操作系统配置错误提权</h2><h3 id="系统服务配置错误提权"><a href="#系统服务配置错误提权" class="headerlink" title="系统服务配置错误提权"></a>系统服务配置错误提权</h3><h4 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h4><p>Windwos系统服务文件在操作系统启动时加载和执行，并在后台调用可执行文件。如果一个低权限的用户对这类系统服务的可执行文件具有写权限，就可以将其替换成任意可执行文件，并随着系统服务的启动获得系统权限。</p>
+<p>系统服务权限配置错误有两种可能：</p>
+<ul>
+<li>服务未运行，攻击者会使用任意服务替换原来的服务，然后重启服务</li>
+<li>服务正在运行且无法终止，这种情况适用于绝大多数漏洞利用场景，攻击者通常会利用DLL劫持技术并尝试和重启服务来提权</li>
+</ul>
+<h4 id="实战演练-1"><a href="#实战演练-1" class="headerlink" title="实战演练"></a>实战演练</h4><ol>
+<li>首先获取了一个shell，具有普通用户权限</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606101907522.png" alt="image-20230606101907522"></p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606101939033.png" alt="image-20230606101939033"></p>
+<ol start="2">
+<li>利用exploit&#x2F;windows&#x2F;local&#x2F;service_permissions模块进行检查，选择AGGRESSIVE选项，可以利用目标机器每一个有缺陷的服务。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606103053027.png" alt="image-20230606103053027"></p>
+<h3 id="可信任服务路径漏洞"><a href="#可信任服务路径漏洞" class="headerlink" title="可信任服务路径漏洞"></a>可信任服务路径漏洞</h3><h4 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h4><p>Windows服务通常是以System权限运行的，所以系统在解析服务所对应的文件路径中的空格会以系统权限运行。</p>
+<p>例如：有个文件路径”C:\Program Files\Some Folder\Service.exe”</p>
+<p>则对于每一个空格，<strong>Windows都会尝试寻找并执行与空格前面名字相匹配的程序，操作系统会对你路径中空格的所有可能情况进行尝试，直到一个能匹配的程序。</strong></p>
+<ul>
+<li>C:\Program.exe</li>
+<li>C:\Progarm Files\Some.exe</li>
+</ul>
+<p>如果一个按上述规则命名的可执行程序上传到受影响的目录中，那么服务一旦重启，则会以System权限运行。</p>
+<p>漏洞利用可能的情况：</p>
+<ul>
+<li>如果该路径与服务相关，就会任意创建一个服务或者Service模板</li>
+<li>如果路径与可执行文件有关，就任意创建一个可执行文件</li>
+</ul>
+<h3 id="注册表键AlwaysInstallElevated"><a href="#注册表键AlwaysInstallElevated" class="headerlink" title="注册表键AlwaysInstallElevated"></a>注册表键AlwaysInstallElevated</h3><h4 id="介绍-3"><a href="#介绍-3" class="headerlink" title="介绍"></a>介绍</h4><p>注册表键AlwaysInstallElevated是一个策略设置项，如果启用了，任何权限的用户都能以NT AUTHORITY\SYSTEM权限来安装恶意的MSI文件。</p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606105441626.png" alt="image-20230606105441626"></p>
+<h2 id="组策略首选项提权"><a href="#组策略首选项提权" class="headerlink" title="组策略首选项提权"></a>组策略首选项提权</h2><h3 id="介绍-4"><a href="#介绍-4" class="headerlink" title="介绍"></a>介绍</h3><p>管理员在域中新建组策略后，操作系统会自动在SYSVOL共享目录中生成一个XML文件，该文件保存了该组策略更新后的密码，使用AES-256加密。但是微软在2012年公布了AES-256的私钥，导致保存在XML文件中的密码可以被解密。在SYSVOL中可以找到<strong>包含cpassword的XML文件</strong>。</p>
+<h2 id="绕过UAC提权"><a href="#绕过UAC提权" class="headerlink" title="绕过UAC提权"></a>绕过UAC提权</h2><h3 id="介绍-5"><a href="#介绍-5" class="headerlink" title="介绍"></a>介绍</h3><p>在权限不够的情况下，访问系统盘的根目录，Windows目录、Program Files目录，以及读写系统登录数据库等操作都要进行UAC的认证才能进行。</p>
+<h3 id="实战演练-2"><a href="#实战演练-2" class="headerlink" title="实战演练"></a>实战演练</h3><ol>
+<li>首先获取一个shell，权限是普通用户权限，但是该用户必须在管理员组中，并且设置UAC为仅在程序试图更改我的计算机时通知我。</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606112846262.png" alt="image-20230606112846262"></p>
+<ol start="2">
+<li>接着使用exploit&#x2F;windows&#x2F;local&#x2F;bypassuac模块，配置好选项后运行发现成功绕过，获取SYSTEM权限</li>
+</ol>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606113413798.png" alt="image-20230606113413798"></p>
+<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606113254419.png" alt="image-20230606113254419"></p>
+<h2 id="令牌窃取提权"><a href="#令牌窃取提权" class="headerlink" title="令牌窃取提权"></a>令牌窃取提权</h2><h3 id="介绍-6"><a href="#介绍-6" class="headerlink" title="介绍"></a>介绍</h3><p>这个提权方式是针对Kerberos协议，通过入侵服务器，在客户端登录时窃取客户端的令牌，从而获取其权限。但前提是需要获取SYSTEM权限的令牌。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本篇文章总结了常见的Windows提权方式。</p>
+</p><div class="tip">本文采用CC-BY-SA-3.0协议，转载请注明出处<br>Author: Sally</div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-06-06</span><i class="fa fa-tag"></i><a class="tag" href="/tags/内网渗透/" title="内网渗透">内网渗透 </a><span class="leancloud_visitors"></span><span>About 1263 words, 4 min 12 sec  read</span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://phoenixmerk.github.io/2023/06/06/权限提升/,Sally's Blog,权限提升,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/2023/06/07/shiro%E7%BB%84%E4%BB%B6%E7%9B%B8%E5%85%B3%E6%BC%8F%E6%B4%9E/" title="shiro组件相关漏洞">Previous</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/2023/06/04/%E6%8A%A4%E7%BD%91%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94/" title="护网应急响应">Next</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><script src="/js/baidu-tongji.js"></script></body></html>
