@@ -214,12 +214,12 @@ header:after {
   display: grid;
   place-items: center;  
   text-align: center;
-  height: 100vh
+  height: 30vh
 }
 
 .title {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  font-size: 8.5vw;
+  font-size: 10vw;
   text-transform: uppercase;
 }
