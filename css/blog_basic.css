@@ -596,6 +596,7 @@ tt {
     margin-left: 57px;
   }
 }
+
 .tag_box {
   position: relative;
   width: 80%;
@@ -604,4 +605,12 @@ tt {
 }
 .leancloud-visitors-count {
   margin-left: 5px;
+}
+.floating-frame {
+  position: absolute;
+  width: 240px;
+  height: 86px;
+  cursor: move; /* 允许鼠标拖动 */
+  background-color: #fff; /* 背景颜色，可根据需要自行修改 */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* 阴影效果，可根据需要自行修改 */
 }
