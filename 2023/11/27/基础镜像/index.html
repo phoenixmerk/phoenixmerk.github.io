@@ -48,7 +48,7 @@
 <p>压缩后的哈希，和diffID有一一映射关系</p>
 <p><strong>diffID：</strong></p>
 <p>解压缩后的哈希，使用docker inspect可以查看到</p>
-<p><img src="https://asiainfo-sec.feishu.cn/space/api/box/stream/download/asynccode/?code=YWU4ZTAxODAxYTNlMDY2ZDFkZGI1ZGZhN2Q5ZjNhNzhfVkw1MmFpU1dYQWNFam9wN1RGOE1UTkttZk5sakhkVlZfVG9rZW46Q2dLSWJMblFmb09kQkd4ZWl5VWNsQUdNbkVmXzE3MDExODI4NDQ6MTcwMTE4NjQ0NF9WNA" alt="img"></p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/file.png" alt="file"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/var/lib/docker/image/overlay2/distribution/diffid-by-digest/sha256</span><br><span class="line"><span class="comment"># 存放diffID -&gt; layerID 正向查询，以文件名进行查询</span></span><br><span class="line">/var/lib/docker/image/overlay2/distribution/v2metadata-by-diffid/sha256</span><br><span class="line"><span class="comment"># 存放layerID -&gt; diffID 反向查询，以文件名进行查询</span></span><br></pre></td></tr></table></figure>
 
 <p><strong>chainID：</strong></p>
@@ -58,11 +58,11 @@
 </ul>
 <p><strong>cacheID:</strong></p>
 <p>我们想要的第一层layer刚好没有任何父layer，所以diffID&#x3D;chainID，访问&#x2F;var&#x2F;lib&#x2F;docker&#x2F;image&#x2F;overlay2&#x2F;layerdb&#x2F;sha256&#x2F;{chainID}&#x2F;cache-id文件可以获取cache-id</p>
-<p><img src="https://asiainfo-sec.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTM2MzM4MzEwOGVlOTQ3OGVjNDdlNzY3YzQ2MWNlZjlfaWRwUlRXVHB5aUZhZkRYWHJnM3FtdXZqSE94MXhNRXFfVG9rZW46U0ZGZWIzbllRb0pBOFV4anU2dGNySlZsbmxnXzE3MDExODI4NDQ6MTcwMTE4NjQ0NF9WNA" alt="img"></p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/file1.png" alt="file1"></p>
 <p>我们想要获取的镜像&#x2F;etc&#x2F;os-release文件在宿主机的真实路径表现为&#x2F;var&#x2F;lib&#x2F;docker&#x2F;overlay2&#x2F;{cache-id}&#x2F;diff&#x2F;etc&#x2F;os-release</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /var/lib/docker/overlay2/&#123;cache-id&#125;/diff/etc/os-release</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://asiainfo-sec.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDAzYjMyMTlhN2IxZjAzOTM1MGZiNmYwOTYyMDA5NGRfRExVMUZXRWVKeHlGZklDTDdCemVoRjJjMGlyWTc1WW5fVG9rZW46Tko4amJzNmpVb1QwR2h4WUI0YmNRUkhmbnBmXzE3MDExODI4NDQ6MTcwMTE4NjQ0NF9WNA" alt="img"></p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/file2.png" alt="file2"></p>
 <h3 id="利用镜像文件系统查看基础镜像"><a href="#利用镜像文件系统查看基础镜像" class="headerlink" title="利用镜像文件系统查看基础镜像"></a>利用镜像文件系统查看基础镜像</h3><p>在manifest.json文件中找到第一个layer的文件名，进入tar包并查看&#x2F;etc&#x2F;os-release文件，能够获取基础镜像信息</p>
 <p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/find.jpg" alt="find"></p>
 <h2 id="1-2-bif开源工具"><a href="#1-2-bif开源工具" class="headerlink" title="1.2 bif开源工具"></a>1.2 bif开源工具</h2><ul>
