@@ -1,4 +1,46 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Sally"><title>Sally's Blog</title><meta name="description" content="A simple and beautiful blog"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a class="current" href="/">主页</a></li><li> <a href="/archives">归档</a></li><li> <a href="/tags">标签</a></li><li> <a href="/about">关于</a></li><li> <a href="/links">友链</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/kabi.jpg"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/kabi.jpg" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Sally's Blog</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/phoenixmerk"><i class="fa fa-github"></i></a></li><li><a href="mailto:yourname@example.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/jin-xin-4-68"><i class="fa fa-mortar-board"></i></a></li></ul><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1293913379&amp;auto=1&amp;height=66&amp;&amp;loop=1"></iframe></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Sally</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2024/01/29/%E9%83%A8%E7%BD%B2%E5%BD%B1%E5%AD%90APIServer/">部署影子APIServer</a></h3></div><div class="post-content"><div class="card"><p><h2 id="影子APIServer"><a href="#影子APIServer" class="headerlink" title="影子APIServer"></a>影子APIServer</h2><p>参考链接：</p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Sally"><title>Sally's Blog</title><meta name="description" content="A simple and beautiful blog"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a class="current" href="/">主页</a></li><li> <a href="/archives">归档</a></li><li> <a href="/tags">标签</a></li><li> <a href="/about">关于</a></li><li> <a href="/links">友链</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/kabi.jpg"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/kabi.jpg" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Sally's Blog</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/phoenixmerk"><i class="fa fa-github"></i></a></li><li><a href="mailto:yourname@example.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/jin-xin-4-68"><i class="fa fa-mortar-board"></i></a></li></ul><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1293913379&amp;auto=1&amp;height=66&amp;&amp;loop=1"></iframe></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Sally</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2024/03/31/CVE-2024-3094%20sshd-xz%E6%BC%8F%E6%B4%9E/">CVE-2024-3094 sshd-xz漏洞</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Phoenixmerk-blue.svg"></a></p>
+<h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>xz 是一种通用数据压缩格式，几乎存在于每个 Linux 发行版中，包括社区项目和商业产品发行版。从本质上讲，它有助于将大文件格式压缩（然后解压缩）为更小、更易于管理的大小，以便通过文件传输进行共享。</p>
+<p>2024年3月29日，有开发人员在Openwall安全邮件列表发布帖子称liblzma的代码可能被篡改，可能被植入后门代码，该问题记录在CVE-2024-3094下 。在XZ Utils的5.6.0和5.6.1版本中，上游源代码压缩包被破解，并在构建时向生成的 liblzma 库中注入恶意代码；导致通过ssh协议远程连接时，openssh会调用相关恶意函数导致破坏认证，从而达到未授权访问及登陆的影响。</p>
+<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p> xz, xz-utils：5.6.0，5.6.1 </p>
+<p><strong>到目前，可能受影响的Linux发行版</strong>：</p>
+<ul>
+<li>Fedora 41 and Fedora Rawhide（开发版）</li>
+<li>Debian unstable (Sid)（不稳定版）</li>
+<li>Debian testing, unstable experimental发行版, 版本从5.5.1alpha-0.1(uploaded on 2024-02-01), 到5.6.1-1</li>
+<li>Kali Linux 3月26日（包括）之后更新的版本</li>
+</ul>
+<p><strong>到目前，暂不受影响的Linux发行版：</strong></p>
+<ul>
+<li>Red Hat Enterprise Linux (RHEL)</li>
+<li>Debian 所有稳定版</li>
+<li>SUSE 全部版本</li>
+<li>RedHat 全部版本</li>
+<li>Fedora 40版本</li>
+</ul>
+<h2 id="运行时检测方式分析"><a href="#运行时检测方式分析" class="headerlink" title="运行时检测方式分析"></a>运行时检测方式分析</h2><h3 id="1-开启sshd的lzma压缩传输"><a href="#1-开启sshd的lzma压缩传输" class="headerlink" title="1. 开启sshd的lzma压缩传输"></a>1. 开启sshd的lzma压缩传输</h3><p>编辑 OpenSSH 的配置文件 <code>/etc/ssh/sshd_config</code>，在其中添加或修改以下行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codeCompression <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240331172410544.png" alt="image-20240331172410544"></p>
+<p>重启sshd生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-尝试使用sshd连接其他主机"><a href="#2-尝试使用sshd连接其他主机" class="headerlink" title="2. 尝试使用sshd连接其他主机"></a>2. 尝试使用sshd连接其他主机</h3><p>尝试连接主机</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh &#123;用户名&#125;@&#123;你想连的IP&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尝试执行命令，这时候传输的数据会进行压缩</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240331172820960.png" alt="image-20240331172820960"></p>
+<h3 id="3-观察伪文件目录的情况"><a href="#3-观察伪文件目录的情况" class="headerlink" title="3. 观察伪文件目录的情况"></a>3. 观察伪文件目录的情况</h3><p>此时sshd会加载链接库liblzma，首先我们找到sshd的进程号为3759046</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep sshd</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240331173100122.png" alt="image-20240331173100122"></p>
+<p>进入伪文件系统查看maps，可以发现调用了动态链接库liblzma，我们可以通过这里进行正则匹配检测是否是漏洞利用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /proc/3759046</span><br><span class="line"><span class="built_in">cat</span> maps|grep lzma</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20240331173333349.png" alt="image-20240331173333349"></p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2024-03-31</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>About534words, 1min46secread</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2024/01/29/%E9%83%A8%E7%BD%B2%E5%BD%B1%E5%AD%90APIServer/">部署影子APIServer</a></h3></div><div class="post-content"><div class="card"><p><h2 id="影子APIServer"><a href="#影子APIServer" class="headerlink" title="影子APIServer"></a>影子APIServer</h2><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-phoenixmerk-blue.svg" alt="img"></a></p>
+<p>参考链接：</p>
 <p><a target="_blank" rel="noopener" href="https://www.cdxy.me/?p=839">https://www.cdxy.me/?p=839</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=CH7S5rE3j8w">https://www.youtube.com/watch?v=CH7S5rE3j8w</a></p>
 <h2 id="权限配置"><a href="#权限配置" class="headerlink" title="权限配置"></a>权限配置</h2><p>为Pod设置高权限的ServiceAccount，通过ClusterRole和ClusterRoleBinding实现</p>
@@ -73,10 +115,10 @@
 <li><input disabled="" type="checkbox"> 信息窃取-获取K8s Pod Security Policies        </li>
 <li><input disabled="" type="checkbox"> 权限提升-K8s RBAC绕过                         </li>
 <li><input disabled="" type="checkbox"> 持久化-部署WebShell                         </li>
-<li><input disabled="" type="checkbox"> 持久化-部署后门Pod                          </li>
+<li><input checked="" disabled="" type="checkbox"> 持久化-部署后门Pod                          </li>
 <li><input checked="" disabled="" type="checkbox"> 持久化-部署影子K8s api-server              </li>
 <li><input disabled="" type="checkbox"> 持久化-K8s MITM攻击(CVE-2020-8554)      </li>
-<li><input disabled="" type="checkbox"> 持久化-部署K8s CronJob</li>
+<li><input checked="" disabled="" type="checkbox"> 持久化-部署K8s CronJob</li>
 </ul>
 <h2 id="CDK网络探测-k8s组件探测"><a href="#CDK网络探测-k8s组件探测" class="headerlink" title="CDK网络探测-k8s组件探测"></a>CDK网络探测-k8s组件探测</h2><p>进入测试容器中查看k8s环境变量</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">env</span> |grep KUBE</span><br></pre></td></tr></table></figure>
@@ -192,7 +234,21 @@
 <h4 id="命令特征-11"><a href="#命令特征-11" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run k8s-shadow-apiserver default/anonymous/token-path</span><br></pre></td></tr></table></figure>
 
 <h4 id="日志审计特征"><a href="#日志审计特征" class="headerlink" title="日志审计特征"></a>日志审计特征</h4><p>由于涉及pod创建，所以可以开启日志审计，写一个审计pod创建的日志审计策略捕获特征。由于影子api-server是利用修改api-server启动配置得以利用，所以我们在捕获特征的过程重点关注这个，详细见我近期的文章-Kubernetes日志审计策略</p>
-</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2024-01-17</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>About1525words, 5min5secread</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2024/01/16/lxcfs%20cgroup%E9%94%99%E8%AF%AF%E9%85%8D%E7%BD%AE%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/">lxcfs cgroup错误配置容器逃逸</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-phoenixmerk-blue.svg" alt="img"></a></p>
+<h2 id="CDK持久化-部署K8s-CronJob"><a href="#CDK持久化-部署K8s-CronJob" class="headerlink" title="CDK持久化-部署K8s CronJob"></a>CDK持久化-部署K8s CronJob</h2><p>进入测试容器，执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run k8s-cronjob default min alpine <span class="string">&quot;echo hellow;echo cronjob&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="特征提取-12"><a href="#特征提取-12" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征-12"><a href="#进程特征-12" class="headerlink" title="进程特征"></a>进程特征</h4><p>父进程 bash，子进程cdk，参数run k8s-cronjob [default|anonymous|service-account-token-path] [min|hour|day|cron-expr] [IMAGE] [ARGS]</p>
+<h4 id="命令特征-12"><a href="#命令特征-12" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run k8s-cronjob [default|anonymous|service-account-token-path] [min|hour|day|cron-expr] [IMAGE] [ARGS]</span><br></pre></td></tr></table></figure>
+
+<h4 id="日志审计特征-1"><a href="#日志审计特征-1" class="headerlink" title="日志审计特征"></a>日志审计特征</h4><p>由于涉及cronjob创建，所以可以开启日志审计，写一个审计cronjob创建的日志审计策略捕获特征，详细见我近期的文章-Kubernetes日志审计策略</p>
+<h2 id="CDK持久化-部署后门Pod"><a href="#CDK持久化-部署后门Pod" class="headerlink" title="CDK持久化-部署后门Pod"></a>CDK持久化-部署后门Pod</h2><p>进入测试容器，执行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run k8s-backdoor-daemonset default ubuntu</span><br></pre></td></tr></table></figure>
+
+<h3 id="特征提取-13"><a href="#特征提取-13" class="headerlink" title="特征提取"></a>特征提取</h3><h4 id="进程特征-13"><a href="#进程特征-13" class="headerlink" title="进程特征"></a>进程特征</h4><p>父进程 bash，子进程cdk，参数run k8s-backdoor-daemonset [default|anonymous|service-account-token-path]  [image]</p>
+<h4 id="命令特征-13"><a href="#命令特征-13" class="headerlink" title="命令特征"></a>命令特征</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./cdk run k8s-backdoor-daemonset [default|anonymous|service-account-token-path]  [image]</span><br></pre></td></tr></table></figure>
+
+<h4 id="日志审计特征-2"><a href="#日志审计特征-2" class="headerlink" title="日志审计特征"></a>日志审计特征</h4><p>由于涉及pod创建，所以可以开启日志审计，写一个审计pod创建的日志审计策略捕获特征。后门pod通常会挂载宿主机&#x2F;目录，可以作为特征在日志审计中捕获，详细见我近期的文章-Kubernetes日志审计策略</p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2024-01-17</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>About1848words, 6min9secread</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2024/01/16/lxcfs%20cgroup%E9%94%99%E8%AF%AF%E9%85%8D%E7%BD%AE%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/">lxcfs cgroup错误配置容器逃逸</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-phoenixmerk-blue.svg" alt="img"></a></p>
 <h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p>Ubuntu 20.04</p>
 <p>docker 20.10.21</p>
 <p>kubernetes 1.22.7</p>
@@ -658,7 +714,47 @@
 <td>“–authorization-mode&#x3D;AlwaysAllow”</td>
 </tr>
 </tbody></table>
-</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-20</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>About989words, 3min17secread</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/09/CVE-2019-1002101%20kubectl%20cp%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/">CVE-2019-1002101 kubectl cp容器逃逸</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg"></a></p>
+<h3 id="异常行为检测-通过k8s控制器创建后门容器"><a href="#异常行为检测-通过k8s控制器创建后门容器" class="headerlink" title="异常行为检测-通过k8s控制器创建后门容器"></a>异常行为检测-通过k8s控制器创建后门容器</h3><h4 id="开启日志审计功能-4"><a href="#开启日志审计功能-4" class="headerlink" title="开启日志审计功能"></a>开启日志审计功能</h4><p>准备审计文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/kubernetes/audit-policy/apiserver-audit-policy.yaml</span><br></pre></td></tr></table></figure>
+
+<p>审计默认组中的pod资源的create动作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: audit.k8s.io/v1 </span><br><span class="line">kind: Policy</span><br><span class="line">omitStages:</span><br><span class="line">  - <span class="string">&quot;RequestReceived&quot;</span></span><br><span class="line">rules:</span><br><span class="line">  <span class="comment"># 在日志中用 RequestResponse 级别记录 Pod 变化。</span></span><br><span class="line">  - level: RequestResponse</span><br><span class="line">    verbs: [<span class="string">&quot;create&quot;</span>]</span><br><span class="line">    resources:</span><br><span class="line">    - group: <span class="string">&quot;&quot;</span></span><br><span class="line">      resources: [<span class="string">&quot;pods&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<h4 id="日志分析-4"><a href="#日志分析-4" class="headerlink" title="日志分析"></a>日志分析</h4><table>
+<thead>
+<tr>
+<th>match one</th>
+<th>match two</th>
+<th>match three</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>verb: “create”</td>
+<td>“resource”: “deployments”</td>
+<td>“hostPath”:{“path”:”&#x2F;“</td>
+</tr>
+</tbody></table>
+<h3 id="异常行为检测-k8s-cronjob持久化"><a href="#异常行为检测-k8s-cronjob持久化" class="headerlink" title="异常行为检测-k8s cronjob持久化"></a>异常行为检测-k8s cronjob持久化</h3><h4 id="开启日志审计功能-5"><a href="#开启日志审计功能-5" class="headerlink" title="开启日志审计功能"></a>开启日志审计功能</h4><p>准备审计文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/kubernetes/audit-policy/apiserver-audit-policy.yaml</span><br></pre></td></tr></table></figure>
+
+<p>审计默认组中的pod资源的create动作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: audit.k8s.io/v1 </span><br><span class="line">kind: Policy</span><br><span class="line">omitStages:</span><br><span class="line">  - <span class="string">&quot;RequestReceived&quot;</span></span><br><span class="line">rules:</span><br><span class="line">  <span class="comment"># 在日志中用 RequestResponse 级别记录 Pod 变化。</span></span><br><span class="line">  - level: RequestResponse</span><br><span class="line">    verbs: [<span class="string">&quot;create&quot;</span>]</span><br><span class="line">    resources:</span><br><span class="line">    - group: <span class="string">&quot;&quot;</span></span><br><span class="line">      resources: [<span class="string">&quot;pods&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<h4 id="日志分析-5"><a href="#日志分析-5" class="headerlink" title="日志分析"></a>日志分析</h4><table>
+<thead>
+<tr>
+<th>match one</th>
+<th>match two</th>
+<th>match three</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>verb: “create”</td>
+<td>“resource”: “cronjobs”</td>
+<td></td>
+</tr>
+</tbody></table>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-20</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>About1224words, 4min4secread</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/09/CVE-2019-1002101%20kubectl%20cp%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/">CVE-2019-1002101 kubectl cp容器逃逸</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg"></a></p>
 <h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>Twistlock的流程图很好的解释了kubectl cp漏洞的利用链及其原理。</p>
 <ol>
 <li><p>启动一个被破坏或者恶意的容器</p>
@@ -824,32 +920,4 @@
 <p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20230912170647623.png" alt="image-20230912170647623"></p>
 <p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20230912170658008.png" alt="image-20230912170658008"></p>
 <p>参考链接：<a target="_blank" rel="noopener" href="https://bbs.kanxue.com/thread-272962.htm">CVE-2018-15664：符号链接替换漏洞</a></p>
-</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-09-12</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>About2794words, 9min18secread</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/09/02/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1%E7%9C%9F%E5%AE%9E%E6%BA%AF%E6%BA%90%E7%BB%8F%E5%8E%86/">记录一次真实溯源经历</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg" alt="img"></a></p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在一次针对XX类型单位的攻防演练中，本人作为蓝队值守<strong>应领导要求</strong>对某个攻击IP进行溯源。</p>
-<h2 id="溯源过程"><a href="#溯源过程" class="headerlink" title="溯源过程"></a>溯源过程</h2><ol>
-<li><p>IP查询</p>
-<p>站长之家查询是<strong>上海腾讯云的IP</strong></p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230902101955257.png" alt="image-20230902101955257"></p>
-<p>由于是腾讯云我采用忘记账号的方式查询电话辅助信息，可以获得<strong>脱敏的手机号</strong></p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230902102155888.png" alt="image-20230902102155888"></p>
-</li>
-<li><p>域名解析记录查询</p>
-<p>通过360安全大脑可以查询出该IP曾解析过一个个人域名xxx.top</p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230902101543597.png" alt="image-20230902101543597"></p>
-<p>xxx.top还未过期，可以猜测该IP临时改绑了</p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230902102439711.png" alt="image-20230902102439711"></p>
-</li>
-<li><p>ICP备案信息泄露</p>
-<p>通过微步对该IP归属单位进行查询，发现他并没有对自己的信息隐私化，可以查到<strong>归属人姓名</strong></p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/%E5%9B%BE%E7%89%871.png" alt="图片1"></p>
-</li>
-<li><p>网络查询（博客、学校）</p>
-<p>通过百度搜索该域名可以查询到网页中包含该域名网站，于是查询到了<strong>归属人的博客园</strong>，通过博客园可以获得<strong>归属人的网名xxx</strong></p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/%E5%9B%BE%E7%89%872.png" alt="图片2"></p>
-<p>根据网名和归属人姓名可以查询到<strong>学校和相关奖项</strong></p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/%E5%9B%BE%E7%89%873.png" alt="图片3"></p>
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230902103517284.png" alt="image-20230902103517284"></p>
-</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上述溯源过程纯属运气，由于攻击队某个成员没有将自己的IP曾经绑定的个人站中的备案信息隐私化，从而得以让我们查找到真实姓名，进行溯源反查。</p>
-</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-09-02</span><i class="fa fa-tag"></i><a class="tag" href="/tags/应急响应/" title="应急响应">应急响应 </a><span class="leancloud_visitors"></span><span>About355words, 1min11secread</span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/2/">Próximo</a></li></ul></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><script src="/js/baidu-tongji.js"></script></body></html>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-09-12</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>About2794words, 9min18secread</span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/2/">Próximo</a></li></ul></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><script src="/js/baidu-tongji.js"></script></body></html>
